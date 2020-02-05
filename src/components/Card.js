@@ -1,8 +1,9 @@
 import React, { Component } from "react";
+import "../styles/Card.css";
 
 const Card = props => {
   console.log("props", props);
-  return <img {...props} style={{ width: "50px", height: "50px" }} />;
+  return <img {...props} className="card" />;
 };
 
 export default Card;

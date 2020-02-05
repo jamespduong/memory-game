@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import Card from "./Card";
 import "../styles/App.css";
-import { getImages } from "../api/lorem";
+import { getImages } from "../api/unsplash";
+import { duplicateNShuffleArray } from "../utils/helpers";
 
 class App extends Component {
   state = { cards: [] };
@@ -10,7 +11,9 @@ class App extends Component {
     console.log("mounted");
     getImages().then(res => {
       console.log("here", res);
-      this.setState({ cards: res.data.results });
+      this.setState({ cards: duplicateNShuffleArray(res.data.results) }, () =>
+        console.log("state", this.state)
+      );
     });
   }
 
