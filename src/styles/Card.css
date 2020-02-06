@@ -4,10 +4,12 @@
 .card {
   height: 100%;
   width: 100%;
+  border-radius: 8px;
 }
 .card-container {
   border: 1px solid black;
   margin: 16px;
   width: 250px;
   height: 250px;
+  border-radius: 8px;
 }

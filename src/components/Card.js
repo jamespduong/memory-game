@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../styles/Card.css";
 
 const Card = props => {
@@ -13,6 +13,8 @@ const Card = props => {
   } = props;
 
   const onClick = () => {
+    if (selected) return null; // to prevent user from accidently clicking the same card twice
+
     handleClick({ id, pairid });
   };
 
