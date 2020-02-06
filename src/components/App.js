@@ -41,7 +41,8 @@ class App extends Component {
 
   componentDidMount() {
     getImages().then(res => {
-      this.setState({ cards: duplicateNShuffleArray(res.data.results) }, () =>
+      console.log("res", res);
+      this.setState({ cards: duplicateNShuffleArray(res.data) }, () =>
         console.log("state", this.state)
       );
     });
@@ -51,13 +52,13 @@ class App extends Component {
     const { cards, cardsSelected, cardsMatched } = this.state;
     if (cards.length < 1) return <div> loading...</div>;
 
-    return cards.map(({ urls, id, pairid }) => {
+    return cards.map(({ download_url, id, pairid }) => {
       return (
         <Card
           key={id}
           id={id}
           pairid={pairid}
-          src={urls.small}
+          src={download_url}
           handleClick={this.handleClick}
           selected={cardsSelected.find(card => card.id === id)}
           matched={cardsMatched.includes(id)}
