@@ -27,11 +27,13 @@ const Card = props => {
   };
 
   return (
-    <img
-      {...other}
-      className={`card ${!isFaceUp() && "hidden"}`}
-      onClick={onClick}
-    />
+    <div className="card-container">
+      <img
+        {...other}
+        className={` ${!isFaceUp() && "hidden"} card`}
+        onClick={onClick}
+      />
+    </div>
   );
 };
 

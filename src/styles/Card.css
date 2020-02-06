@@ -1,9 +1,13 @@
-.card {
-  width: 200px;
-  height: 200px;
-  padding: 16px;
-  border: 1px solid black;
-}
 .hidden {
-  opacity: 0.5;
+  opacity: 0;
+}
+.card {
+  height: 100%;
+  width: 100%;
+}
+.card-container {
+  border: 1px solid black;
+  margin: 16px;
+  width: 250px;
+  height: 250px;
 }

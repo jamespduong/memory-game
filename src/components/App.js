@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import Card from "./Card";
-import "../styles/App.css";
 import { getImages } from "../api/unsplash";
 import { duplicateNShuffleArray } from "../utils/helpers";
-import shortid from "shortid";
+import { matchTimer } from "../config/index";
+import "../styles/App.css";
 
 class App extends Component {
   state = { cards: [], cardsSelected: [], cardsMatched: [] };
@@ -12,31 +12,28 @@ class App extends Component {
     this.setState(
       prevState => ({ cardsSelected: [...prevState.cardsSelected, ids] }),
       () => {
-        console.log("state", this.state);
         const { cardsSelected } = this.state;
 
         if (cardsSelected.length === 2) {
           setTimeout(() => {
+            const cardOne = cardsSelected[0];
+            const cardTwo = cardsSelected[1];
+
             // if pairs match
-            if (cardsSelected[0].pairid === cardsSelected[1].pairid) {
-              console.log("match");
-              this.setState(
-                prevState => ({
-                  cardsMatched: [
-                    ...prevState.cardsMatched,
-                    cardsSelected[0].id,
-                    cardsSelected[1].id
-                  ],
-                  cardsSelected: []
-                }),
-                () => console.log("state", this.state)
-              );
+            if (cardOne.pairid === cardTwo.pairid) {
+              this.setState(prevState => ({
+                cardsMatched: [
+                  ...prevState.cardsMatched,
+                  cardOne.id,
+                  cardTwo.id
+                ],
+                cardsSelected: []
+              }));
               // if pairs don't match
             } else {
-              console.log("no match");
               this.setState({ cardsSelected: [] });
             }
-          }, 2000);
+          }, matchTimer);
         }
       }
     );
@@ -70,11 +67,7 @@ class App extends Component {
   };
 
   render() {
-    return (
-      <div className="container-cards">
-        <div>{this.renderCards()} </div>
-      </div>
-    );
+    return <div className="container-cards">{this.renderCards()}</div>;
   }
 }
 
