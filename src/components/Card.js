@@ -19,13 +19,7 @@ const Card = props => {
   };
 
   const isFaceUp = () => {
-    if (selected) {
-      return true;
-    }
-    if (matched) {
-      return true;
-    }
-    return false;
+    return selected || matched;
   };
 
   return (
